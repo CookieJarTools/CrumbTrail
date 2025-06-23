@@ -17,7 +17,7 @@ namespace CookieJarTools.CrumbTrail.Editor
         private CookieJarTools.CrumbTrail.Editor.UI.TabView tabView;
         private readonly Dictionary<ToDoList, ToolbarToggle> listToTabMap = new();
 
-        [MenuItem("Tools/ToDo Lists")]
+        [MenuItem("Window/CookieJarTools/CrumbTrail")]
         public static void ShowWindow()
         {
             var window = GetWindow<ToDoListWindow>();
