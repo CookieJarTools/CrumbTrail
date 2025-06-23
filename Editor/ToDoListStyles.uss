@@ -1,0 +1,235 @@
+﻿.window-background {
+    background-color: #1a1a1a;
+    padding: 10px;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.add-list-button,
+.delete-list-button,
+.add-task-button {
+    margin: 8px 0;
+    padding: 8px 14px;
+    font-size: 14px;
+    border-radius: 6px;
+    border-width: 1px;
+}
+
+.add-list-button {
+    background-color: #2e2e2e;
+    border-color: #444;
+    color: white;
+}
+
+.add-list-button:hover {
+    background-color: #444;
+}
+
+.delete-list-button {
+    background-color: #3a1f1f;
+    border-color: #a33;
+    color: #f88;
+}
+
+.delete-list-button:hover {
+    background-color: #a33;
+}
+
+.add-task-button {
+    background-color: #1f3a1f;
+    border-color: #3a773a;
+    color: #a8f8a8;
+}
+
+.add-task-button:hover {
+    background-color: #3a773a;
+}
+
+.delete-task-button {
+    padding: 2px 6px;
+    font-size: 12px;
+    background-color: #3a1f1f;
+    border-width: 1px;
+    border-color: #a33;
+    border-radius: 3px;
+    color: #f88;
+    margin-left: auto;
+}
+
+.delete-task-button:hover {
+    background-color: #a33;
+}
+
+.tab-buttons-container {
+    margin-bottom: 0px;
+}
+
+.tab-scroll {
+    flex-grow: 0;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.tab-buttons {
+    flex-direction: row;
+    padding: 0 2px;
+}
+
+.tab-buttons > * {
+    min-width: 100px;
+    -unity-font-style: bold;
+    padding: 6px 10px;
+}
+
+.tab-buttons > ToolbarToggle {
+    background-color: #2b2b2b;
+    border-width: 1px;
+    border-color: #444;
+    border-radius: 6px;
+    font-size: 13px;
+    -unity-font-style: bold;
+    color: #ccc;
+    margin-right: 6px;
+}
+
+.tab-buttons > ToolbarToggle:checked {
+    background-color: #444;
+    color: #fff;
+}
+
+.tab-view,
+.tab-content,
+.task-scrollview {
+    flex-grow: 1;
+}
+
+.todo-list {
+    background-color: #252525;
+    border-radius: 8px;
+    padding: 14px;
+    border-width: 1px;
+    border-color: #444;
+    margin-top: 6px;
+    flex-grow: 1;
+}
+
+.list-title {
+    font-size: 18px;
+    -unity-font-style: bold;
+    margin-bottom: 6px;
+    color: white;
+}
+
+.list-description {
+    margin-bottom: 12px;
+    color: #ccc;
+}
+
+.task-box {
+    margin-bottom: 6px;
+    padding-bottom: 2px;
+    border-radius: 6px;
+    border-width: 1px;
+    border-color: #444;
+}
+
+.task-box.compact {
+    margin-bottom: 6px;
+    padding-bottom: 0px;
+    border-bottom-width: 1px;
+    border-color: #2a2a2a;
+}
+
+.task-row {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.task-box.compact .task-row {
+    margin-bottom: 2px;
+}
+
+.task-text {
+    flex-grow: 1;
+    font-size: 13px;
+    color: white;
+}
+
+.task-description {
+    font-size: 12px;
+    color: #aaa;
+    margin-left: 20px;
+}
+
+.task-box.compact .task-description,
+.task-box.compact .task-priority {
+    display: none;
+}
+
+.options-box {
+    margin-bottom: 6px;
+    flex-direction: column;
+    min-height: 50px;
+}
+
+.options-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    min-height: 25px;
+}
+
+.search-field {
+    min-width: 160px;
+    min-height: 25px;
+    flex-grow: 1;
+    font-size: 13px;
+    color: #ddd;
+    background-color: #1e1e1e;
+    border-width: 1px;
+    border-color: #444;
+    border-radius: 4px;
+    padding: 4px 6px;
+}
+
+.priority-filter {
+    background-color: #1f3a1f;
+    color: #fff;
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: #3a773a;
+    padding: 4px 10px;
+    -unity-text-align: middle-left;
+    min-height: 25px;
+    min-width: 250px;
+}
+
+Toggle,
+.unity-toggle__input,
+.options-row > Toggle {
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.options-row > PopupField{
+    max-width: 200px;
+    min-width: 200px;
+}
+
+.options-row > PopupField > Label{
+    flex-grow: 1;
+    min-width: 50px;
+}
+
+.options-row > PopupField > VisualElement{
+    max-width: 100px;
+    min-width: 100px;
+}
+
+.options-row > TextField > Label{
+    max-width: 78px;
+    min-width: 78px;
+}
