@@ -1,10 +1,24 @@
-﻿{
-  "name": "crumbtrail",
+{
+  "name": "com.cookiejartools.crumbtrail",
   "version": "1.0.1",
-  "description": "A simple Todo List",
+  "displayName": "Crumb Trail",
+  "description": "A simple to-do list that lives inside the Unity editor.",
+  "unity": "6000.0",
   "license": "MIT",
+  "author": {
+    "name": "CookieJarTools",
+    "url": "https://github.com/CookieJarTools"
+  },
+  "keywords": [
+    "todo",
+    "tasks",
+    "editor"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/CookieJarTools/CrumbTrail"
-  }
+  },
+  "documentationUrl": "https://github.com/CookieJarTools/CrumbTrail#readme",
+  "changelogUrl": "https://github.com/CookieJarTools/CrumbTrail/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/CookieJarTools/CrumbTrail/blob/main/LICENSE.md"
 }

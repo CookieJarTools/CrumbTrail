@@ -1,6 +1,6 @@
 {
     "name": "CrumbTrailEditor",
-    "rootNamespace": "",
+    "rootNamespace": "CookieJarTools.CrumbTrail.Editor",
     "references": [],
     "includePlatforms": [
         "Editor"
