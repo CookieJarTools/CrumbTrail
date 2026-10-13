@@ -4,7 +4,7 @@
   "displayName": "Crumb Trail",
   "description": "A simple to-do list that lives inside the Unity editor.",
   "unity": "6000.0",
-  "license": "MIT",
+  "license": "PolyForm-Noncommercial-1.0.0",
   "author": {
     "name": "CookieJarTools",
     "url": "https://github.com/CookieJarTools"

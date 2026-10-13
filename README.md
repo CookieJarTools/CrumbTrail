@@ -37,4 +37,5 @@ in a corner and forget about until you need it.
 
 ## Licence
 
-MIT. See [LICENSE.md](LICENSE.md).
+Free for noncommercial use under the PolyForm Noncommercial License 1.0.0.
+Commercial use needs a licence, so get in touch. See [LICENSE.md](LICENSE.md).
