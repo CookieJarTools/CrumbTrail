@@ -4,6 +4,26 @@ All notable changes to this package are written here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this package follows
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-10-14
+
+### Added
+
+- **Every task opens into a note, written in Markdown.** Headings, bold, italic, bullets, quotes,
+  inline code and fenced code all draw. The note shows as drawn text and turns into the raw
+  Markdown when you press Edit, because a note is read far more often than it is written. The
+  chevron stays lit on a task that carries one, so a note is never hidden.
+- **`[[Page Name]]` in a note links to a CookBook page** and opens it when clicked. CrumbTrail does
+  not depend on the CookBook: the part that knows about it is a separate assembly that only builds
+  when the CookBook is installed, in the same way LayerCake does it. Without it, the link says what
+  is missing rather than doing nothing.
+
+### Fixed
+
+- **Enter took two presses to write a task down.** The field syncs what was typed into its value as
+  part of handling Return, so reading it inside the key callback saw whatever was there beforehand,
+  which on the first press was nothing. The first press only committed the text and the second one
+  found it. It reads a tick later now.
+
 ## [1.1.0] - 2026-10-14
 
 ### Fixed

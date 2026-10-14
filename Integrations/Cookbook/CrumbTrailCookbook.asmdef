@@ -1,0 +1,22 @@
+{
+    "name": "CrumbTrailCookbook",
+    "rootNamespace": "CookieJarTools.CrumbTrail.Integrations.Cookbook",
+    "references": [
+        "CrumbTrailEditor",
+        "CookbookEditor",
+        "CookbookRuntime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "COOKIEJAR_COOKBOOK"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

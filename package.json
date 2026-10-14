@@ -1,6 +1,6 @@
 {
   "name": "com.cookiejartools.crumbtrail",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "displayName": "Crumb Trail",
   "description": "A simple to-do list that lives inside the Unity editor.",
   "unity": "6000.0",

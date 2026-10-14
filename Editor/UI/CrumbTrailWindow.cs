@@ -18,6 +18,9 @@ namespace CookieJarTools.CrumbTrail.Editor
 	{
 		private const string NoFilter = "Any priority";
 
+		private readonly HashSet<ToDoTask> open = new HashSet<ToDoTask>();
+		private readonly HashSet<ToDoTask> editing = new HashSet<ToDoTask>();
+
 		private int current;
 		private string search = string.Empty;
 		private TaskPriority? priorityFilter;
@@ -95,8 +98,14 @@ namespace CookieJarTools.CrumbTrail.Editor
 				return;
 			}
 
-			Capture();
-			evt.StopPropagation();
+			// Read it a tick later, and do not stop the key getting through.
+			//
+			// The field syncs what was typed into its value as part of handling Return, so reading
+			// it inside this callback sees whatever was there beforehand, which on the first press
+			// is nothing. That is what made it take two presses: the first press only committed
+			// the text, and the second one found it. Letting the key finish and reading afterwards
+			// works whichever way round the field happens to do it.
+			EditorApplication.delayCall += Capture;
 		}
 
 		/// <summary>Writes down whatever is in the field, and leaves the field ready for the next one.</summary>
@@ -343,9 +352,15 @@ namespace CookieJarTools.CrumbTrail.Editor
 
 		private VisualElement BuildTask(ToDoList list, ToDoTask task)
 		{
+			// A task is a line and, when it is opened, the note under it. The two live in one box
+			// so the note moves with the line rather than floating next to it.
+			var box = new VisualElement();
+			box.AddToClassList("crumb__task-box");
+
 			var row = new VisualElement();
 			row.AddToClassList("crumb__task");
 			row.EnableInClassList("crumb__task--done", task.Done);
+			box.Add(row);
 
 			var toggle = new Toggle { value = task.Done };
 			toggle.AddToClassList("crumb__task-toggle");
@@ -378,8 +393,81 @@ namespace CookieJarTools.CrumbTrail.Editor
 				row.Add(BuildLink(task));
 			}
 
-			row.Add(BuildTaskActions(list, task));
-			return row;
+			row.Add(BuildTaskActions(list, task, box));
+
+			if (open.Contains(task))
+			{
+				box.Add(BuildNote(task));
+			}
+
+			return box;
+		}
+
+		/// <summary>
+		/// The note under a task, written in Markdown.
+		/// <para>
+		/// It shows as drawn text and turns into the raw Markdown when clicked, which is the way
+		/// round that suits reading. A note is read far more often than it is written, so the
+		/// drawn version is what you get by default.
+		/// </para>
+		/// </summary>
+		private VisualElement BuildNote(ToDoTask task)
+		{
+			var note = new VisualElement();
+			note.AddToClassList("crumb__note");
+
+			if (editing.Contains(task))
+			{
+				var field = new TextField { value = task.Description, multiline = true };
+				field.AddToClassList("crumb__note-edit");
+				field.RegisterValueChangedCallback(evt =>
+				{
+					task.Description = evt.newValue;
+					Data.Touch();
+				});
+				field.RegisterCallback<FocusOutEvent>(_ =>
+				{
+					editing.Remove(task);
+					RefreshTasks();
+				});
+				note.Add(field);
+				field.schedule.Execute(() => field.Focus()).ExecuteLater(1);
+				return note;
+			}
+
+			if (string.IsNullOrWhiteSpace(task.Description))
+			{
+				var empty = new Label("Click to write a note. Markdown works, and [[Page]] links to the CookBook.");
+				empty.AddToClassList("crumb__note-empty");
+				empty.RegisterCallback<ClickEvent>(_ => Edit(task));
+				note.Add(empty);
+				return note;
+			}
+
+			var drawn = MarkdownBlock.Build(task.Description);
+			note.Add(drawn);
+
+			var edit = new Button(() => Edit(task)) { text = "Edit" };
+			edit.AddToClassList("crumb__note-editbutton");
+			note.Add(edit);
+			return note;
+		}
+
+		private void Edit(ToDoTask task)
+		{
+			editing.Add(task);
+			RefreshTasks();
+		}
+
+		private void ToggleOpen(ToDoTask task)
+		{
+			if (!open.Remove(task))
+			{
+				open.Add(task);
+			}
+
+			editing.Remove(task);
+			RefreshTasks();
 		}
 
 		private VisualElement BuildLink(ToDoTask task)
@@ -391,10 +479,19 @@ namespace CookieJarTools.CrumbTrail.Editor
 			return badge;
 		}
 
-		private VisualElement BuildTaskActions(ToDoList list, ToDoTask task)
+		private VisualElement BuildTaskActions(ToDoList list, ToDoTask task, VisualElement box)
 		{
 			var actions = new VisualElement();
 			actions.AddToClassList("crumb__task-actions");
+
+			// The one action that stays visible, because a task carrying a note should say so
+			// without being hovered over first.
+			var expand = new Button(() => ToggleOpen(task)) { text = open.Contains(task) ? "▾" : "▸" };
+			expand.AddToClassList("crumb__task-button");
+			expand.AddToClassList("crumb__task-expand");
+			expand.EnableInClassList("crumb__task-expand--has-note", !string.IsNullOrWhiteSpace(task.Description));
+            expand.tooltip = "The note on this task";
+			actions.Add(expand);
 
 			var link = new Button(() => LinkSelection(task)) { text = "◉" };
 			link.AddToClassList("crumb__task-button");

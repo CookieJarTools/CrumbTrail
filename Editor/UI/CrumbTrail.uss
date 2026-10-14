@@ -354,3 +354,135 @@
     -unity-text-align: middle-center;
     max-width: 260px;
 }
+
+/* ------------------------------------------------------------------- Note */
+
+.crumb__task-box {
+    flex-shrink: 0;
+}
+
+/* The chevron stays visible on a task that carries a note, so the note is discoverable. */
+
+.crumb__task-expand {
+    opacity: 0.35;
+}
+
+.crumb__task-expand--has-note {
+    opacity: 1;
+    color: var(--accent-text);
+}
+
+.crumb__note {
+    padding: 4px 12px 12px 46px;
+    border-bottom-width: 1px;
+    border-color: var(--hairline);
+    background-color: var(--surface);
+}
+
+.crumb__note-empty {
+    color: var(--muted);
+    font-size: 11px;
+    white-space: normal;
+}
+
+.crumb__note-edit {
+    margin: 0;
+    min-height: 80px;
+}
+
+.crumb__note-edit .unity-base-text-field__input {
+    background-color: var(--raised);
+    border-width: 1px;
+    border-color: var(--hairline-strong);
+    border-radius: 6px;
+    padding: 6px 8px;
+    color: var(--text);
+    white-space: normal;
+}
+
+.crumb__note-editbutton {
+    align-self: flex-start;
+    margin: 8px 0 0 0;
+    padding: 2px 10px;
+    border-width: 1px;
+    border-color: var(--hairline);
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--muted);
+    font-size: 11px;
+    transition-property: background-color, color;
+    transition-duration: 110ms;
+}
+
+.crumb__note-editbutton:hover {
+    background-color: var(--hover);
+    color: var(--text);
+}
+
+/* --------------------------------------------------------------- Markdown */
+
+.crumb__md-paragraph {
+    white-space: normal;
+    margin-bottom: 4px;
+    color: var(--label);
+}
+
+.crumb__md-heading {
+    -unity-font-definition: resource("Fonts/Inter/Inter-SemiBold.ttf");
+    color: var(--text);
+    white-space: normal;
+    margin-top: 6px;
+    margin-bottom: 3px;
+}
+
+.crumb__md-heading--1 {
+    font-size: 15px;
+}
+
+.crumb__md-heading--2 {
+    font-size: 14px;
+}
+
+.crumb__md-heading--3 {
+    font-size: 13px;
+}
+
+.crumb__md-item {
+    flex-direction: row;
+    margin-bottom: 2px;
+}
+
+.crumb__md-marker {
+    flex-shrink: 0;
+    width: 16px;
+    color: var(--muted);
+}
+
+.crumb__md-item-text {
+    flex-grow: 1;
+    white-space: normal;
+    color: var(--label);
+}
+
+.crumb__md-quote {
+    border-left-width: 2px;
+    border-color: var(--hairline-strong);
+    padding-left: 8px;
+    margin: 4px 0;
+}
+
+.crumb__md-code-block {
+    white-space: normal;
+    background-color: var(--raised);
+    border-width: 1px;
+    border-color: var(--hairline);
+    border-radius: 6px;
+    padding: 6px 8px;
+    margin: 4px 0;
+    color: #c8ccd4;
+    font-size: 11px;
+}
+
+.crumb__md-has-link:hover {
+    color: var(--accent-text);
+}

@@ -51,6 +51,11 @@ written, so there is nothing in that gap: no dialog, no choosing a list first, n
 press the target button on a task. The task wears its name from then on, and clicking that badge
 pings it in the project. That is the part a note in a text file cannot do.
 
+**Every task opens into a note, written in Markdown.** Headings, bold, italic, bullets, quotes,
+inline code and fenced code all draw, so the detail behind a one line task has somewhere to live
+without turning the list itself into an essay. The note shows as drawn text and turns into the raw
+Markdown when you click Edit, because a note is read far more often than it is written.
+
 **Lists are tabs, with what is left on them.** The count is the number still to do, which is the
 only number worth seeing.
 
@@ -72,6 +77,11 @@ with the project and goes through version control with it. Nothing has to be sav
 **Tasks are per project, not per scene.** Opening a different scene does not change the list.
 
 **Right click a tab to rename the list.**
+
+**If the CookBook is in the project, `[[Page Name]]` in a note links to that page** and opens it
+when clicked. CrumbTrail does not depend on the CookBook: the part that knows about it is a
+separate assembly that only builds when the CookBook is installed, and a page link says plainly
+what is missing when it is not.
 
 ## Licence
 
