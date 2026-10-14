@@ -1,0 +1,356 @@
+/*
+ * CrumbTrail, in the house style: quiet and flat, hairline rules, one indigo accent, and what you
+ * can do with a task kept out of sight until you are on it.
+ *
+ * Stands on nothing else, so the tool can be dropped into any project.
+ */
+
+.crumb-root {
+    flex-grow: 1;
+    background-color: #0d0e11;
+    --surface: #121317;
+    --raised: #1a1c21;
+    --hairline: rgba(255, 255, 255, 0.06);
+    --hairline-strong: rgba(255, 255, 255, 0.11);
+    --hover: rgba(255, 255, 255, 0.035);
+    --selected: rgba(255, 255, 255, 0.06);
+    --text: #edeef1;
+    --label: #b4b8c0;
+    --muted: #767c87;
+    --accent: #5e6ad2;
+    --accent-soft: rgba(94, 106, 210, 0.16);
+    --accent-text: #c3c9f7;
+    --low: #6b7280;
+    --medium: #5e6ad2;
+    --high: #e0a33f;
+    font-size: 13px;
+    color: var(--label);
+}
+
+.crumb-root Label {
+    color: var(--label);
+}
+
+/* ------------------------------------------------------------------ Tabs */
+
+.crumb__tabs {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    height: 40px;
+    padding: 0 8px;
+    border-bottom-width: 1px;
+    border-color: var(--hairline);
+    background-color: var(--surface);
+}
+
+.crumb__tab {
+    flex-direction: row;
+    align-items: center;
+    height: 26px;
+    padding: 0 10px;
+    margin-right: 4px;
+    border-radius: 6px;
+    border-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--muted);
+    transition-property: background-color, color;
+    transition-duration: 110ms;
+}
+
+.crumb__tab:hover {
+    background-color: var(--hover);
+}
+
+.crumb__tab:hover .crumb__tab-name {
+    color: var(--label);
+}
+
+.crumb__tab-name {
+    color: var(--muted);
+}
+
+.crumb__tab--on {
+    background-color: var(--selected);
+    color: var(--text);
+    -unity-font-definition: resource("Fonts/Inter/Inter-SemiBold.ttf");
+}
+
+.crumb__tab-count {
+    margin-left: 6px;
+    padding: 0 5px;
+    border-radius: 7px;
+    font-size: 10px;
+    color: var(--muted);
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
+.crumb__tab--on .crumb__tab-name {
+    color: var(--text);
+}
+
+.crumb__tab--on .crumb__tab-count {
+    color: var(--accent-text);
+    background-color: var(--accent-soft);
+}
+
+.crumb__tab-add {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    margin: 0;
+    border-width: 0;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.crumb__tab-add:hover {
+    background-color: var(--hover);
+    color: var(--text);
+}
+
+/* ---------------------------------------------------------------- Capture */
+
+/* The one field. Nothing gets in the way of writing a task down. */
+
+.crumb__capture {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 10px 12px 6px 12px;
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: var(--hairline);
+    background-color: var(--surface);
+    transition-property: border-color;
+    transition-duration: 110ms;
+}
+
+.crumb__capture--on {
+    border-color: var(--accent);
+}
+
+.crumb__capture-field {
+    flex-grow: 1;
+    margin: 0;
+}
+
+.crumb__capture-field .unity-base-text-field__input {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    padding: 7px 10px;
+    color: var(--text);
+}
+
+.crumb__capture-hint {
+    flex-shrink: 0;
+    margin-right: 10px;
+    font-size: 10px;
+    color: var(--muted);
+}
+
+/* ----------------------------------------------------------------- Search */
+
+.crumb__bar {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 0 12px 8px 12px;
+}
+
+.crumb__search {
+    flex-grow: 1;
+    flex-direction: row;
+    align-items: center;
+    height: 26px;
+    border-radius: 6px;
+    border-width: 1px;
+    border-color: var(--hairline);
+    background-color: var(--surface);
+}
+
+.crumb__search-field {
+    flex-grow: 1;
+    margin: 0;
+}
+
+.crumb__search-field .unity-base-text-field__input {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    padding: 3px 8px;
+    color: var(--text);
+}
+
+.crumb__more {
+    width: 26px;
+    height: 26px;
+    margin-left: 6px;
+    padding: 0;
+    border-width: 1px;
+    border-color: var(--hairline);
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--muted);
+}
+
+.crumb__more:hover {
+    background-color: var(--hover);
+    color: var(--text);
+}
+
+/* ------------------------------------------------------------------ Tasks */
+
+.crumb__tasks {
+    flex-grow: 1;
+}
+
+.crumb__task {
+    flex-direction: row;
+    align-items: center;
+    min-height: 34px;
+    padding: 4px 12px;
+    border-bottom-width: 1px;
+    border-color: var(--hairline);
+    transition-property: background-color;
+    transition-duration: 110ms;
+}
+
+.crumb__task:hover {
+    background-color: var(--hover);
+}
+
+.crumb__task--done .crumb__task-text {
+    color: var(--muted);
+}
+
+.crumb__task-toggle {
+    flex-shrink: 0;
+    margin: 0 8px 0 0;
+}
+
+/* The priority is a 2px bar rather than a word, so a column of them reads at a glance. */
+
+.crumb__task-priority {
+    width: 2px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-right: 8px;
+    border-radius: 1px;
+}
+
+.crumb__task-priority--low {
+    background-color: var(--low);
+}
+
+.crumb__task-priority--medium {
+    background-color: var(--medium);
+}
+
+.crumb__task-priority--high {
+    background-color: var(--high);
+}
+
+.crumb__task-text {
+    flex-grow: 1;
+    margin: 0;
+}
+
+.crumb__task-text .unity-base-text-field__input {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    padding: 2px 4px;
+    color: var(--text);
+}
+
+/* What you can do with a task stays out of sight until you are on it. */
+
+.crumb__task-actions {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 110ms;
+}
+
+.crumb__task:hover .crumb__task-actions {
+    opacity: 1;
+}
+
+.crumb__task-button {
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    margin-left: 2px;
+    border-width: 0;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.crumb__task-button:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--text);
+}
+
+/* A task pointing at something keeps its badge visible, because that is information. */
+
+.crumb__task-link {
+    flex-shrink: 0;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 6px;
+    padding: 1px 7px;
+    border-radius: 7px;
+    font-size: 10px;
+    color: var(--accent-text);
+    background-color: var(--accent-soft);
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ------------------------------------------------------------ Empty states */
+
+.crumb__empty {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.crumb__empty-frame {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background-color: var(--raised);
+    border-width: 1px;
+    border-color: var(--hairline);
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.crumb__empty-icon {
+    width: 20px;
+    height: 20px;
+    --unity-image-tint-color: var(--muted);
+}
+
+.crumb__empty-title {
+    -unity-font-definition: resource("Fonts/Inter/Inter-SemiBold.ttf");
+    color: var(--text);
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.crumb__empty-line {
+    color: var(--muted);
+    font-size: 11px;
+    white-space: normal;
+    -unity-text-align: middle-center;
+    max-width: 260px;
+}
