@@ -4,6 +4,21 @@ All notable changes to this package are written here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this package follows
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-10-14
+
+### Fixed
+
+- **Enter still took two presses**, because 1.2.0 fixed the symptom rather than the cause. The
+  field is delayed now, which means it reports what was typed exactly when the text is committed,
+  and committing is what Enter does. There is no longer any ordering to get wrong: the task is
+  written down because the field said so, not because a key was seen.
+
+### Added
+
+- **A Create button beside the field**, for anyone who would rather press it than trust Enter. It
+  reads the live text rather than the committed value, so typing and clicking it straight away
+  writes down what is actually on screen.
+
 ## [1.2.0] - 2026-10-14
 
 ### Added

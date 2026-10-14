@@ -144,11 +144,24 @@
     color: var(--text);
 }
 
-.crumb__capture-hint {
+/* The one filled button in the window, because writing a task down is what it is for. */
+
+.crumb__capture-button {
     flex-shrink: 0;
-    margin-right: 10px;
-    font-size: 10px;
-    color: var(--muted);
+    margin: 4px;
+    padding: 4px 12px;
+    border-width: 0;
+    border-radius: 6px;
+    background-color: var(--accent);
+    color: #ffffff;
+    -unity-font-definition: resource("Fonts/Inter/Inter-SemiBold.ttf");
+    font-size: 11px;
+    transition-property: background-color;
+    transition-duration: 110ms;
+}
+
+.crumb__capture-button:hover {
+    background-color: #6f7ae0;
 }
 
 /* ----------------------------------------------------------------- Search */

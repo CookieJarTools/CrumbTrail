@@ -43,7 +43,8 @@ about, which is the one trick neither of the other two can manage.
 
 ## What it does
 
-**One field, one key.** The box at the top is always there and Enter writes the task down. The
+**One field, one key.** The box at the top is always there, and Enter writes the task down, or
+press Create beside it. The
 reason a list stops being used is almost always the gap between noticing something and getting it
 written, so there is nothing in that gap: no dialog, no choosing a list first, no fields to fill.
 

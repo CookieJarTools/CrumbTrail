@@ -75,43 +75,36 @@ namespace CookieJarTools.CrumbTrail.Editor
 			box.AddToClassList("crumb__capture");
 			root.Add(box);
 
-			capture = new TextField { value = string.Empty };
+			// Delayed on purpose. A delayed field tells us it changed exactly when the text is
+			// committed, which is when Enter is pressed or focus leaves, and by then the value is
+			// the text that was typed. Watching for the Return key instead meant reading the value
+			// before the field had written it, which is why it used to take two presses.
+			capture = new TextField { value = string.Empty, isDelayed = true };
 			capture.AddToClassList("crumb__capture-field");
 			capture.textEdition.placeholder = "Write a task down";
 			capture.textEdition.hidePlaceholderOnFocus = false;
+			capture.RegisterValueChangedCallback(evt => Capture(evt.newValue));
 			box.Add(capture);
 
-			var hint = new Label("Enter");
-			hint.AddToClassList("crumb__capture-hint");
-			box.Add(hint);
+			// Reads the live text rather than the value. The field is delayed, so its value is
+			// whatever was last committed, and pressing Create after typing would otherwise write
+			// down the previous thing. Clicking the button also takes focus off the field, which
+			// commits and writes the task through the callback above, and this second read then
+			// finds an empty field and does nothing, so it cannot be written twice.
+			var create = new Button(() => Capture(capture.text)) { text = "Create" };
+			create.AddToClassList("crumb__capture-button");
+			create.tooltip = "Write it down. Enter does the same.";
+			box.Add(create);
 
 			// USS has no :focus-within, so the box is told when the field inside it has focus.
 			capture.RegisterCallback<FocusInEvent>(_ => box.AddToClassList("crumb__capture--on"));
 			capture.RegisterCallback<FocusOutEvent>(_ => box.RemoveFromClassList("crumb__capture--on"));
-			capture.RegisterCallback<KeyDownEvent>(OnCaptureKey);
 		}
 
-		private void OnCaptureKey(KeyDownEvent evt)
+		/// <summary>Writes down whatever was given, and leaves the field ready for the next one.</summary>
+		private void Capture(string written)
 		{
-			if (evt.keyCode != KeyCode.Return && evt.keyCode != KeyCode.KeypadEnter)
-			{
-				return;
-			}
-
-			// Read it a tick later, and do not stop the key getting through.
-			//
-			// The field syncs what was typed into its value as part of handling Return, so reading
-			// it inside this callback sees whatever was there beforehand, which on the first press
-			// is nothing. That is what made it take two presses: the first press only committed
-			// the text, and the second one found it. Letting the key finish and reading afterwards
-			// works whichever way round the field happens to do it.
-			EditorApplication.delayCall += Capture;
-		}
-
-		/// <summary>Writes down whatever is in the field, and leaves the field ready for the next one.</summary>
-		private void Capture()
-		{
-			var text = capture.value?.Trim();
+			var text = written?.Trim();
 			if (string.IsNullOrEmpty(text))
 			{
 				return;
